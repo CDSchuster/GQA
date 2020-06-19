@@ -4,9 +4,12 @@ Segun mail Mariana Viegas.
 
 Entrada:
 
-* alineamiento/secuencia en FASTA
-* secuencia de referencia (la que uno quiera, ahora sería utilizada para Corona pero podría ser usada para cualquier virus)
-* un archivo tabulado de anotación de genes (posición de cara ORF)
++ alineamiento/secuencia en FASTA
++ secuencia de referencia (la que uno quiera, ahora sería utilizada para Corona pero podría ser usada para cualquier virus)
++ un archivo tabulado de anotación de genes (posición de cada ORF)
+
+  - Creo que partiendo de la idea de lo que hicimos para el MSA_cut, que le dabamos una query, podriamos usar la posicion como dice Mariana o una query.
+
 * un archivo tabulado de localización de primers y sondas de interés
 
 Calcular:
