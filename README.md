@@ -9,6 +9,7 @@ Entrada:
 * un archivo tabulado de anotación de genes (posición de cara ORF)
 * un archivo tabulado de localización de primers y sondas de interés
 
+Calcular:
 
 1) % de cada ORF con datos (entiéndase: bases nucleotídicas)
 
