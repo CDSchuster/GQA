@@ -13,7 +13,7 @@ def run_pairwise_align(ref_seq, seq):
 
 def alignment_parser():
     """Return the parsed pairwise alignment"""
-    parsed_alignment=SeqIO.parse('merge.fasta', "fasta")
+    parsed_alignment=SeqIO.parse('msa.fasta', "fasta")
     return parsed_alignment
 
 def parse_ORF_positions(table_filename):
@@ -38,19 +38,19 @@ def adjust_ORF_pos(ORF_pos, alignment, ref_name):
 
             x_index=0
             seq_ref=seq.seq
-            gaps_count=0
+            noGap_count=0
             largo_seq=len(seq_ref)
 
             # ORF_pos: Lista de posiciones ordenadas de menor a mayor
             i=0
             target_position=ORF_pos[i]
             adjusted_ORFS=[]
-            
+
             while x_index<largo_seq:
-                if seq_ref[x_index] =="N":
-                    gaps_count+=1
-                if target_position == x_index:
-                    adjusted_ORFS.append(x_index+gaps_count)
+                if seq_ref[x_index] !="n":
+                    noGap_count+=1
+                if target_position == noGap_count:
+                    adjusted_ORFS.append(x_index)
                     if i<len(ORF_pos)-1:
                         i=i+1
                         target_position=ORF_pos[i]
