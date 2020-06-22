@@ -13,7 +13,7 @@ def joinFastas(ref_seq_file, seq_file):
 	return 0
 
 def runMafft(input_fasta):
-	"""Corre MAFFT para la entrada de fastas. Devuelve un msa de nombre 'msa.fasta' en el directorio de ejecucion """
+	"""Corre MAFFT para la entrada de fastas. Devuelve un msa de nombre 'msa.fasta' en el directorio de ejecucion. Tener en cuenta la ruta de MAFFT para ser invocado (Referencia al directorio o PATH) """
 	argumentos=[
 			"mafft",
 			input_fasta,
