@@ -35,15 +35,17 @@ def adjust_ORF_pos(ORF_pos, alignment, ref_name):
     # Busco unicamente la secuencia de referencia( Para ello la entrada tambien es el nombre de la referencia "ref_name")
     for seq in alignment:
         if seq.id == ref_name:
+
             x_index=0
             seq_ref=seq.seq
             gaps_count=0
             largo_seq=len(seq_ref)
+
             # ORF_pos: Lista de posiciones ordenadas de menor a mayor
             i=0
-            print("E")
             target_position=ORF_pos[i]
             adjusted_ORFS=[]
+            
             while x_index<largo_seq:
                 if seq_ref[x_index] =="N":
                     gaps_count+=1
