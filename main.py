@@ -2,12 +2,13 @@ from Bio import SeqIO
 import pandas as pd
 import argparse
 
-def pairwise_align(ref_seq, seq):
-    """Runs pairwise alignment for one sequence and the reference"""
-    #COMPLETAR
-    #Puede ser manual, con MAFFT o Blast. Si se hace con programa debe
-    #devolver el nombre del archivo donde esta guardado el alineamiento
-    return alignment_filename
+from pairwise_align import *
+
+def run_pairwise_align(ref_seq, seq):
+    """Runs pairwise alignment for one sequence and the reference using MAFFT"""
+    joinFastas(ref_seq, seq)
+    runMafft('merge.fasta')
+    return 0
 
 def alignment_parser(ref_seq, seq):
     """Return the parsed pairwise alignment"""
