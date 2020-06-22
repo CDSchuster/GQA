@@ -39,7 +39,7 @@ def adjust_ORF_pos(ORF_pos, alignment, ref_name):
             seq_ref=seq.seq
             gaps_count=0
             largo_seq=len(seq_ref)
-            # ORF_pos:Lista de posiciones ordenadas de menor a mayor
+            # ORF_pos: Lista de posiciones ordenadas de menor a mayor
             i=0
             print("E")
             target_position=ORF_pos[i]
