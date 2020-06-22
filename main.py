@@ -6,17 +6,15 @@ from pairwise_align import *
 
 def run_pairwise_align(ref_seq, seq):
     """Runs pairwise alignment for one sequence and the reference using MAFFT"""
-    joinFastas(ref_seq, seq)
+    ref_name = joinFastas(ref_seq, seq)
     runMafft('merge.fasta')
-    return 0
+    # Devuele el nombre de la referencia en caso de que haya multiples secuencias
+    return ref_name
 
-def alignment_parser(ref_seq, seq):
+def alignment_parser():
     """Return the parsed pairwise alignment"""
-    alignment_filename=pairwise_align(ref_seq, seq)
-    #Esta funcion tiene sentido si el alineamiento se hace con Blast/MAFFT
-    #COMPLETAR
+    parsed_alignment=SeqIO.parse('merge.fasta', "fasta")
     return parsed_alignment
-
 
 def parse_ORF_positions(table_filename):
     """Parses a table file with the ORF
@@ -26,14 +24,37 @@ def parse_ORF_positions(table_filename):
     #COMPLETAR
     return pd.read_csv(table_filename)
 
-def adjust_ORF_pos(ORF_pos, alignment):
+def adjust_ORF_pos(ORF_pos, alignment, ref_name):
     """Adjusts ORF positions according to gap
     insertions in the reference sequence"""
     #Debe hacer un conteo de gaps en la referencia recorriendo el alineamiento
     #pareado y reajustar las posiciones de inicio y fin de los ORFs.
     #Debe devolver ls posiciones ajustadas en formato lista o diccionario
     #COMPLETAR
-    return adjusted_ORFs
+
+    # Busco unicamente la secuencia de referencia( Para ello la entrada tambien es el nombre de la referencia "ref_name")
+    for seq in alignment:
+        if seq.id == ref_name:
+            x_index=0
+            seq_ref=seq.seq
+            gaps_count=0
+            largo_seq=len(seq_ref)
+            # ORF_pos:Lista de posiciones ordenadas de menor a mayor
+            i=0
+            print("E")
+            target_position=ORF_pos[i]
+            adjusted_ORFS=[]
+            while x_index<largo_seq:
+                if seq_ref[x_index] =="N":
+                    gaps_count+=1
+                if target_position == x_index:
+                    adjusted_ORFS.append(x_index+gaps_count)
+                    if i<len(ORF_pos)-1:
+                        i=i+1
+                        target_position=ORF_pos[i]
+                x_index=x_index+1
+
+    return adjusted_ORFS
 
 def analyze_seq_ORF(seq, ORF):
     """For a specific ORF in a sequence counts nucleotides,
